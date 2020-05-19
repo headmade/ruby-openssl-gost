@@ -27,8 +27,8 @@ RUN set -eux; \
 	} >> /usr/local/etc/gemrc
 
 ENV RUBY_MAJOR 2.5
-ENV RUBY_VERSION 2.5.3
-ENV RUBY_DOWNLOAD_SHA256 1cc9d0359a8ea35fc6111ec830d12e60168f3b9b305a3c2578357d360fcf306f
+ENV RUBY_VERSION 2.5.8
+ENV RUBY_DOWNLOAD_SHA256 6c0bdf07876c69811a9e7dc237c43d40b1cb6369f68e0e17953d7279b524ad9a
 ENV RUBYGEMS_VERSION 3.0.3
 
 # some of ruby's build scripts are written in ruby
@@ -45,12 +45,12 @@ RUN set -eux; \
 	; \
 	rm -rf /var/lib/apt/lists/*; \
 	\
-	wget -O ruby.tar.xz "https://cache.ruby-lang.org/pub/ruby/${RUBY_MAJOR%-rc}/ruby-$RUBY_VERSION.tar.xz"; \
-	echo "$RUBY_DOWNLOAD_SHA256 *ruby.tar.xz" | sha256sum --check --strict; \
+	wget -O ruby.tar.gz "https://cache.ruby-lang.org/pub/ruby/${RUBY_MAJOR%-rc}/ruby-$RUBY_VERSION.tar.gz"; \
+	echo "$RUBY_DOWNLOAD_SHA256 *ruby.tar.gz" | sha256sum --check --strict; \
 	\
 	mkdir -p /usr/src/ruby; \
-	tar -xJf ruby.tar.xz -C /usr/src/ruby --strip-components=1; \
-	rm ruby.tar.xz; \
+	tar -zxvf ruby.tar.gz -C /usr/src/ruby --strip-components=1; \
+	rm ruby.tar.gz; \
 	\
 	cd /usr/src/ruby; \
 	\
