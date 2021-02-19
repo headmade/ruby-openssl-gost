@@ -1,4 +1,4 @@
-FROM rnix/openssl-gost AS openssl-gost
+FROM hedmade/docker-openssl-gost AS openssl-gost
 
 FROM buildpack-deps:stretch AS ruby_2.5.8
 
