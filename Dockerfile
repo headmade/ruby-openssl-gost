@@ -1,6 +1,7 @@
 FROM hedmade/docker-openssl-gost AS openssl-gost
 
-FROM buildpack-deps:stretch AS ruby_2.5.8
+# must use same debian as docker-openssl-gost
+FROM buildpack-deps:buster AS ruby_2.5.8
 
 COPY --from=openssl-gost /usr/local/ssl /usr/local/ssl
 COPY --from=openssl-gost /usr/local/ssl/bin/openssl /usr/bin/openssl
